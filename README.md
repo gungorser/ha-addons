@@ -5,6 +5,7 @@ Home Assistant add-on repository of the Gungor house. One repository, one folder
 | Add-on | Folder | What it does |
 |---|---|---|
 | Paperless-ngx | [`paperless/`](paperless) | Document archive: OCR, tags, full-text search; documents on the `paperless` network storage |
+| Paperless MCP | [`paperless-mcp/`](paperless-mcp) | MCP server for Paperless (search, read, tag documents from Claude) behind a secret URL |
 
 ## Install
 
@@ -13,8 +14,9 @@ Home Assistant: Settings -> Add-ons -> Add-on store -> menu -> Repositories, add
 
 ## Layout
 
-Each add-on folder holds `config.yaml` (name, version, options, ports, folder maps), `build.yaml`
-(pinned upstream image), `Dockerfile`, `rootfs/` (files copied into the image), `DOCS.md` (the
+Each add-on folder holds `config.yaml` (name, version, options, ports, folder maps), `Dockerfile`
+(pinned upstream image in `FROM`; `build.yaml` is deprecated by the Supervisor and only left in
+`paperless/` until its next change), `rootfs/` (files copied into the image), `DOCS.md` (the
 Documentation tab in Home Assistant) and `CHANGELOG.md`.
 
 ## Release
@@ -29,4 +31,6 @@ Test an add-on image before it is merged. A cloud session can run Docker (`sudo 
 session proxy in its environment). Docker Hub is reachable; `ghcr.io` blobs and the Debian mirrors
 are not, so `apt-get` layers cannot be built there: build a test image from the upstream image plus
 `rootfs/`, and run the packages the Dockerfile installs (redis, nginx) as their own Docker Hub
-images on the host network. Each add-on's `DOCS.md` lists what to check.
+images on the host network. npm works when the build runs with `--network host`, the session
+proxy as `https_proxy` build argument and the session CA as npm `cafile` (test copy of the
+Dockerfile only); Alpine `apk` mirrors are blocked. Each add-on's `DOCS.md` lists what to check.

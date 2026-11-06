@@ -42,7 +42,10 @@ events {
 http {
     access_log off;
     client_max_body_size 0;
-    proxy_request_buffering off;
+    # Buffer request bodies: Ingress streams them chunked, and Paperless
+    # (granian/ASGI) reads a chunked body as empty. Buffered, nginx sends
+    # a Content-Length instead.
+    proxy_request_buffering on;
     proxy_read_timeout 600s;
 
     map $http_upgrade $connection_upgrade {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Fix every change from the sidebar panel failing with 400 ("This field is required"): Ingress
+  sends request bodies chunked and Paperless read them as empty. nginx now buffers the body
+  and forwards it with a Content-Length.
+
 ## 0.1.1
 
 - Fix login from the sidebar panel: nginx drops the `Origin: null` header that the Ingress

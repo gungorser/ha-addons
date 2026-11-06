@@ -1,7 +1,7 @@
 name: Paperless MCP
-version: "0.1.0"
+version: "0.2.0"
 slug: paperless_mcp
-description: MCP server for Paperless-ngx (baruchiro/paperless-mcp), so Claude can search and tag documents
+description: MCP server for Paperless-ngx (baruchiro/paperless-mcp) with Home Assistant login
 url: https://github.com/gungorser/ha-addons/tree/master/paperless-mcp
 arch:
   - aarch64
@@ -11,11 +11,17 @@ boot: auto
 ports:
   8100/tcp: 8100
 ports_description:
-  8100/tcp: MCP endpoint behind the secret path (publish through the reverse proxy, HTTPS only)
+  8100/tcp: MCP endpoint, Home Assistant login (publish through the reverse proxy, HTTPS only)
 options:
   paperless_url: http://ffbb73c4-paperless:8099
+  ha_external_url: https://homeassistant.gungors.duckdns.org
+  ha_internal_url: http://homeassistant:8123
+  allowed_users: []
 schema:
   paperless_url: url
   paperless_token: password
+  ha_external_url: url
+  ha_internal_url: url
+  allowed_users:
+    - str
   public_url: url?
-  access_key: password?

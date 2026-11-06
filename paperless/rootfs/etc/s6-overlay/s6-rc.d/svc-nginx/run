@@ -1,0 +1,4 @@
+#!/command/with-contenv /usr/bin/bash
+# shellcheck shell=bash
+# Single entry for Ingress and the LAN port; Paperless itself listens on 127.0.0.1:8000.
+exec nginx -c /etc/nginx/nginx.conf

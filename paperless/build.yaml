@@ -1,0 +1,4 @@
+# Upstream image pinned per add-on version; bump both together.
+build_from:
+  aarch64: docker.io/paperlessngx/paperless-ngx:2.20.15
+  amd64: docker.io/paperlessngx/paperless-ngx:2.20.15

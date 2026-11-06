@@ -1,0 +1,4 @@
+#!/command/with-contenv /usr/bin/bash
+# shellcheck shell=bash
+# Turns the add-on options into Paperless environment and renders nginx.conf.
+exec python3 /usr/local/bin/addon-env.py

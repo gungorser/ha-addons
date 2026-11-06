@@ -1,0 +1,51 @@
+name: Paperless-ngx
+version: "0.1.0"
+slug: paperless
+description: Document archive with OCR, tags and full-text search (Paperless-ngx)
+url: https://github.com/gungorser/ha-addons/tree/master/paperless
+arch:
+  - aarch64
+  - amd64
+# The upstream image runs its own s6-overlay as PID 1.
+init: false
+startup: application
+boot: auto
+hassio_api: true
+ingress: true
+ingress_port: 8099
+ingress_stream: true
+panel_icon: mdi:file-document-multiple
+panel_title: Paperless
+ports:
+  8099/tcp: 8000
+ports_description:
+  8099/tcp: Direct access for the Paperless mobile app (home network only)
+map:
+  - addon_config:rw
+  - share:rw
+options:
+  ocr_language: nld+eng+tur
+  time_zone: Europe/Amsterdam
+  filename_format: "{{ created_year }}/{{ correspondent }}/{{ title }}"
+  consumer_recursive: true
+  consumer_subdirs_as_tags: true
+  consumer_polling: 60
+  csrf_trusted_origins:
+    - http://192.168.0.221:8123
+    - http://homeassistant.local:8123
+    - http://192.168.0.221:8000
+  env_vars: []
+schema:
+  ocr_language: str
+  time_zone: str
+  filename_format: str
+  consumer_recursive: bool
+  consumer_subdirs_as_tags: bool
+  consumer_polling: int(0,)
+  csrf_trusted_origins:
+    - url
+  admin_user: str?
+  admin_password: password?
+  env_vars:
+    - name: match(^PAPERLESS_[A-Z0-9_]+$)
+      value: str

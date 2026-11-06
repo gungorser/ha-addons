@@ -53,6 +53,12 @@ http {
         default $http_x_forwarded_proto;
         '' $scheme;
     }
+    # The Ingress panel (an iframe) can post forms with "Origin: null", which
+    # Django's CSRF check rejects. Drop that value; the CSRF token is still checked.
+    map $http_origin $origin {
+        default $http_origin;
+        null '';
+    }
 
     server {
         listen 8099;
@@ -61,6 +67,7 @@ http {
         proxy_set_header Host $http_host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_set_header Origin $origin;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
 

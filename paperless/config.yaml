@@ -1,5 +1,5 @@
 name: Paperless-ngx
-version: "0.1.0"
+version: "0.1.1"
 slug: paperless
 description: Document archive with OCR, tags and full-text search (Paperless-ngx)
 url: https://github.com/gungorser/ha-addons/tree/master/paperless

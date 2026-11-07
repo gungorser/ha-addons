@@ -39,7 +39,7 @@ by tags:
 | `llm_provider` | `anthropic` | `anthropic`, `googleai`, `openai`, `mistral` or `ollama` |
 | `llm_model` | `claude-haiku-5-5` | Model name of that provider |
 | `anthropic_api_key`, `googleai_api_key`, `openai_api_key`, `mistral_api_key` | empty | API keys; the one of `llm_provider` (and `vision_llm_provider`) is required |
-| `llm_language` | `Turkish` | Language of the generated titles |
+| `llm_language` | `Dutch, Turkish or English` | Hint to the LLM which language the documents are in ("The content is likely in ..."). It does not set the language of the titles: those usually follow the document. To force one, edit `title_prompt.tmpl` in the prompts folder |
 | `vision_llm_provider` | `none` | LLM OCR provider; `none` keeps LLM OCR off |
 | `vision_llm_model` | empty | Vision model, required when `vision_llm_provider` is set |
 | `create_new_tags` | `false` | Allow the LLM to create tags that do not exist yet |

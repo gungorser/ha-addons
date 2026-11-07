@@ -1,5 +1,5 @@
 name: Paperless GPT
-version: "0.1.0"
+version: "0.1.1"
 slug: paperless_gpt
 description: LLM titles, tags, correspondents, document types and OCR for Paperless-ngx (paperless-gpt)
 url: https://github.com/gungorser/ha-addons/tree/master/paperless-gpt
@@ -21,7 +21,7 @@ options:
   paperless_public_url: https://paperless.gungors.duckdns.org
   llm_provider: anthropic
   llm_model: claude-haiku-5-5
-  llm_language: Turkish
+  llm_language: Dutch, Turkish or English
   vision_llm_provider: none
   create_new_tags: false
   log_level: info

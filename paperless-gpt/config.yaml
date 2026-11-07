@@ -1,0 +1,46 @@
+name: Paperless GPT
+version: "0.1.0"
+slug: paperless_gpt
+description: LLM titles, tags, correspondents, document types and OCR for Paperless-ngx (paperless-gpt)
+url: https://github.com/gungorser/ha-addons/tree/master/paperless-gpt
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+# paperless-gpt has no login of its own: the web UI is reached only through
+# Ingress (Home Assistant login), no port is published.
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:robot-outline
+panel_title: Paperless GPT
+map:
+  - addon_config:rw
+options:
+  paperless_url: http://ffbb73c4-paperless:8099
+  paperless_public_url: https://paperless.gungors.duckdns.org
+  llm_provider: anthropic
+  llm_model: claude-haiku-5-5
+  llm_language: Turkish
+  vision_llm_provider: none
+  create_new_tags: false
+  log_level: info
+  env_vars: []
+schema:
+  paperless_url: url
+  paperless_token: password
+  paperless_public_url: url?
+  llm_provider: list(anthropic|googleai|openai|mistral|ollama)
+  llm_model: str
+  anthropic_api_key: password?
+  googleai_api_key: password?
+  openai_api_key: password?
+  mistral_api_key: password?
+  llm_language: str
+  vision_llm_provider: list(none|anthropic|googleai|openai|mistral|ollama)
+  vision_llm_model: str?
+  create_new_tags: bool
+  log_level: list(debug|info|warn|error)
+  env_vars:
+    - name: match(^[A-Z][A-Z0-9_]*$)
+      value: str

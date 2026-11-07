@@ -6,6 +6,7 @@ Home Assistant add-on repository of the Gungor house. One repository, one folder
 |---|---|---|
 | Paperless-ngx | [`paperless/`](paperless) | Document archive: OCR, tags, full-text search; documents on the `paperless` network storage |
 | Paperless MCP | [`paperless-mcp/`](paperless-mcp) | MCP server for Paperless (search, read, tag documents from Claude), Home Assistant login |
+| Paperless GPT | [`paperless-gpt/`](paperless-gpt) | LLM titles, tags, correspondents, document types (and optional LLM OCR) for Paperless; provider switchable in the options |
 
 ## Install
 

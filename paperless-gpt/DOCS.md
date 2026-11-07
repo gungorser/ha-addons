@@ -46,6 +46,23 @@ by tags:
 | `log_level` | `info` | `debug`, `info`, `warn` or `error` |
 | `env_vars` | empty | Any other paperless-gpt variable (README of paperless-gpt), for example `TOKEN_LIMIT`, `OLLAMA_HOST`, `OPENAI_BASE_URL`. The options above win over the same name here |
 
+## OCR and tagging in one pass
+
+paperless-gpt AI workflows can run LLM OCR first and then generate the metadata from the clean
+text. The house uses one created in the web UI (stored in the prompts folder,
+`workflows/ocr-ve-etiket/`): trigger tag `ai-isle`, OCR on, all steps default. A Paperless
+workflow (trigger "Document Added", assign tag `ai-isle`) sends every new document through it.
+For old documents, add `ai-isle` in bulk.
+
+## Models (checked 2026-11-07)
+
+- Google AI: `gemini-3.5-flash-lite` works for tagging and OCR. `gemini-2.5-flash` is closed to
+  new API users (404); `gemini-3.8-flash` hung without answer on the free tier (20 requests a
+  day). Free tier for 3.5 Flash-Lite is about 500 requests a day: a document takes 5 requests for
+  tagging plus 1 per page for OCR. `GOOGLEAI_THINKING_BUDGET` gives 400 on Gemini 3 models.
+- Anthropic: `claude-haiku-5-5` needs prepaid API credits (console.anthropic.com), separate from
+  a claude.ai subscription.
+
 ## Cost and privacy
 
 Every processed document's text (and for LLM OCR, page images) goes to the chosen provider. Use a

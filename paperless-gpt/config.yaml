@@ -1,5 +1,5 @@
 name: Paperless GPT
-version: "0.1.1"
+version: "0.1.2"
 slug: paperless_gpt
 description: LLM titles, tags, correspondents, document types and OCR for Paperless-ngx (paperless-gpt)
 url: https://github.com/gungorser/ha-addons/tree/master/paperless-gpt

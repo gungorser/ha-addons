@@ -128,6 +128,13 @@ else
   log "LLM OCR on: $opt_vision_llm_provider / $opt_vision_llm_model"
 fi
 
+# Page images for LLM OCR: upstream renders up to 600 DPI (about 5000x7500
+# pixels per A4 page), which runs a Raspberry Pi 4 out of memory and costs
+# more tokens. These defaults keep pages near 200 DPI; env_vars can override.
+export IMAGE_MAX_RENDER_DPI="${IMAGE_MAX_RENDER_DPI:-200}"
+export IMAGE_MAX_PIXEL_DIMENSION="${IMAGE_MAX_PIXEL_DIMENSION:-2400}"
+export IMAGE_MAX_TOTAL_PIXELS="${IMAGE_MAX_TOTAL_PIXELS:-4000000}"
+
 # State survives updates: undo history and UI settings in /data, prompts in
 # the add-on config folder (editable, upstream defaults copied on first start).
 mkdir -p "$DATA/db" "$DATA/config" "$PROMPTS"

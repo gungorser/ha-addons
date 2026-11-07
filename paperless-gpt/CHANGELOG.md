@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- LLM OCR page images default to about 200 DPI (`IMAGE_MAX_RENDER_DPI` 200,
+  `IMAGE_MAX_PIXEL_DIMENSION` 2400, `IMAGE_MAX_TOTAL_PIXELS` 4000000). The upstream 600 DPI
+  renders ran the Raspberry Pi 4 out of memory on a 4-page scan.
+
 ## 0.1.1
 
 - `llm_language` default `Dutch, Turkish or English`; documented that it is a hint about the

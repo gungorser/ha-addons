@@ -10,12 +10,16 @@ here itself.
 - Release: bump `version` in the add-on's `config.yaml` and add a `CHANGELOG.md` entry in the same PR;
   HA offers the update after the merge to `master`. Pin upstream images in `build.yaml`.
 - Test the image before merging (README "Testing"), and again live after install.
-- Install, update, restart or change options live only with Sercan's approval (`ha_manage_app`).
+- Install, update, restart or change options live after the PR merged (`ha_manage_app`; see Approval below).
 - Add-on options never hold secrets in the repo; credentials are entered in the HA UI.
 
 ## Rules (all Gungor HA repositories)
 
 - Reply to Sercan in Turkish. Commit messages, code comments and repo docs in English.
+- Approval (Sercan, 2026-11-19): a change Sercan asked for is his approval for its deploy, HACS install,
+  reload and restart; do them without asking. Ask first only for steps that cannot be undone: deleting
+  data or entities, Immich trash mode, `force` deploys, secrets, anything outside the house. A short
+  "onaylıyorum" is enough; never ask for an exact sentence.
 - Work on a branch, open a PR to the default branch and merge it yourself when it is green and
   conflict-free; no PRs stacked on unmerged branches. Live changes (HA, renders) follow the repo's rules.
 - Blender only through the Blender MCP (Sercan's live Blender). Home Assistant only through the
